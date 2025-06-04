@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@300..700&display=swap");
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: light --default;
+
+  --color-base-200: #f7f3ff;
+  --color-base-300: #714ed5;
+  --color-primary: #6f50d6;
+}
+
+.font-fredoka {
+  font-family: "Fredoka", sans-serif;
+}
+
+* {
+  font-family: "Quicksand", sans-serif;
+}
