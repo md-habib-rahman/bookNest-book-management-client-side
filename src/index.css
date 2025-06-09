@@ -1,13 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@300..700&display=swap");
+
 @import "tailwindcss";
-
-@plugin "daisyui" {
+@plugin 'daisyui' {
   themes: light --default;
+}
 
-  --color-base-200: #f7f3ff;
-  --color-base-300: #714ed5;
+@plugin 'daisyui/theme' {
+  name: "light";
+  default: true;
+  /* --color-base-100: #e9e1f7; */
+  --color-base-100: #f7f3ff;
+  /* --color-base-200: #f7f3ff; */
+  --color-base-200: #b287fd;
   --color-primary: #6f50d6;
 }
+/* @plugin "daisyui" {
+  themes: light --default;
+  --color-base-100: #f7f3ff;
+  --color-base-200: #714ed5;
+  --color-primary: #6f50d6;
+
+} */
 
 .font-fredoka {
   font-family: "Fredoka", sans-serif;
