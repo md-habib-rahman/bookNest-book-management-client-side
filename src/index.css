@@ -30,12 +30,11 @@
   font-family: "Quicksand", sans-serif;
 }
 
-/* slider-fix.css */
-.awssld {
+/* .awssld {
   height: auto !important;
   min-height: 0 !important;
   background: transparent !important;
-}
+} */
 
 .awssld__wrapper,
 .awssld__content,

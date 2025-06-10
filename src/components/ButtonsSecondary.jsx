@@ -12,7 +12,7 @@ const ButtonsSecondary = ({ text, dest }) => (
   //   </Link>
   <Link
     to={dest}
-    className="relative group inline-block px-4 py-1 m-1 border-2 font-medium border-primary bg-primary text-white rounded-xl overflow-hidden"
+    className="relative group inline-block px-4 py-2 m-1 border-2 font-medium border-primary bg-primary text-white rounded-xl overflow-hidden"
   >
     <span className="absolute w-64 h-0 rotate-45 -translate-x-20 bg-white top-1/2 transition-all duration-300 group-hover:h-64 group-hover:-translate-y-32 ease-in-out z-0"></span>
     <span className="relative z-10 transition duration-300 group-hover:text-primary">

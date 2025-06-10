@@ -1,33 +1,35 @@
-import React from "react";
-import AwesomeSlider from "react-awesome-slider";
-import withAutoplay from "react-awesome-slider/dist/autoplay";
-import "react-awesome-slider/dist/styles.css";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 import Slider1 from "./Slider1";
 import Slider2 from "./Slider2";
+import Slider3 from "./Slider3";
 
 const Banner = () => {
-  const AutoplaySlider = withAutoplay(AwesomeSlider);
-
   return (
-    <AutoplaySlider
-      animation="foldOutAnimation"
-      play={true}
-      cancelOnInteraction={false}
-      interval={5000}
-      bullets={false}
+    <Carousel
+      showArrows={true}
+      showThumbs={false}
+      showStatus={false}
+      autoPlay={true}
+      infiniteLoop={true}
+      interval={6000}
+      stopOnHover={false}
+      emulateTouch={true}
+      swipeable={true}
+      showIndicators={true}
       className="w-full"
-      organicArrows={false}
     >
-      <div className="w-full">
+      <div>
         <Slider1 />
       </div>
-      <div className="w-full">
+      <div>
         <Slider2 />
       </div>
-      {/* <div className="w-full">
-        <BookClubBanner />
-      </div> */}
-    </AutoplaySlider>
+      <div>
+        <Slider3 />
+      </div>
+    </Carousel>
   );
 };
 
