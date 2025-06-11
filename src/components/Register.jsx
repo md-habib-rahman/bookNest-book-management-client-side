@@ -5,10 +5,13 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 
 import ButtonSubmit from "./ButtonSubmit";
 import { MdLogin } from "react-icons/md";
+import ButtonsPrimary from "./ButtonsPrimary";
+import { useNavigate } from "react-router";
 
 const Register = () => {
   const passwordCheck = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-  const { signUpWithEmail, setUser } = use(AuthContext);
+  const { signUpWithEmail, signInWithGoogle, setUser } = use(AuthContext);
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -45,7 +48,7 @@ const Register = () => {
       .then((result) => {
         if (result.user) {
           toast.success("Registered successfully!");
-          setUser(result.user);
+          //setUser(result.user);
         }
       })
       .catch((error) => {
@@ -54,11 +57,17 @@ const Register = () => {
   };
 
   const handleGoogleLogin = () => {
-    toast.success("Logged in with Google!");
+    signInWithGoogle()
+      .then((result) => {
+        toast.success("Registered with google successfully!");
+      })
+      .catch((err) => {
+        toast.error(`${err.message}`);
+      });
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-200 px-4 py-16">
+    <div className=" flex items-center justify-center bg-base-200 px-4 py-16">
       <div className="w-full max-w-md shadow-xl bg-base-100 rounded-xl p-8">
         <h2 className="text-3xl font-bold text-center mb-6 text-primary">
           Create Your Account
@@ -125,7 +134,7 @@ const Register = () => {
 
         <button
           onClick={handleGoogleLogin}
-          className="btn btn-outline w-full flex items-center justify-center gap-2"
+          className="btn btn-outline btn-primary w-full flex items-center justify-center gap-2 rounded-xl"
         >
           <FcGoogle className="text-xl" />
           Continue with Google

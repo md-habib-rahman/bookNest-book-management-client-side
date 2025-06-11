@@ -56,7 +56,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "border-b-2 pb-1 border-primary text-primary font-semibold transition-all duration-200 ease-in-out"
-              : "hover:text-primary font-semibold transition-all duration-200 ease-in-out"
+              : "hover:text-primary transition-all duration-200 ease-in-out"
           }
         >
           Home
@@ -120,7 +120,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex ">
-          <ul className="flex gap-4 px-1 ">{links}</ul>
+          <ul className="flex gap-6 px-1 ">{links}</ul>
         </div>
         <div className="navbar-end space-x-2   ">
           {user ? (
@@ -145,9 +145,10 @@ const Navbar = () => {
                   </p>
                   <button
                     onClick={handleLogOut}
-                    className="btn btn-sm btn-error w-full"
+                    className="btn btn-sm btn-error w-full hover:text-white"
                   >
                     Logout
+                    <MdLogout />
                   </button>
                 </div>
               </div>
@@ -155,11 +156,7 @@ const Navbar = () => {
           ) : (
             <>
               <ButtonsPrimary text="Login" dest="/login" icon={MdLogin} />
-              <ButtonsSecondary
-                text="Register"
-                dest="/register"
-                icon={MdLogout}
-              />
+              <ButtonsSecondary text="Register" dest="/register" />
             </>
           )}
         </div>
