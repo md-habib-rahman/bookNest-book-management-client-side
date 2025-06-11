@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import logo from "../assets/bookNestLogo.png";
 import { Link, NavLink } from "react-router";
 import ButtonsPrimary from "./ButtonsPrimary";
@@ -8,9 +8,24 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { IoMenuSharp } from "react-icons/io5";
 import { MdLogin, MdLogout } from "react-icons/md";
+import axios from "axios";
 
 const Navbar = () => {
-  const { user, logOut } = use(AuthContext);
+  const { user, logOut, serverUrl } = use(AuthContext);
+  const [dbUserInfo, setDbUserInfo] = useState(null);
+
+  useEffect(() => {
+    axios.get(`${serverUrl}/users/${user?.email}`).then((res) => {
+      setDbUserInfo(res.data);
+    });
+  }, [user, serverUrl]);
+
+  //   if (user) {
+  //     const result = axios.get(`${serverUrl}/users/${user.email}`).then((res) => {
+  //       setDbUserInfo(res.data);
+  //     });
+  //   }
+  console.log(dbUserInfo);
 
   const handleLogOut = () => {
     Swal.fire({
@@ -125,9 +140,9 @@ const Navbar = () => {
         <div className="navbar-end space-x-2   ">
           {user ? (
             <div className="relative w-fit group">
-              <div className="w-9 h-9 rounded-full border-2 border-primary p-1 cursor-pointer">
+              <div className="w-9 h-9 rounded-full border-2 border-primary p-[2px] cursor-pointer">
                 <img
-                  src="https://i.ibb.co/jZf74p9g/User-avatar-svg.png"
+                  src={dbUserInfo?.photoUrl}
                   alt="User Avatar"
                   className="w-full h-full object-cover rounded-full"
                 />

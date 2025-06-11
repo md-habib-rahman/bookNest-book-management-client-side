@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.config";
+const serverUrl = "http://localhost:3000";
 
 export const AuthContext = createContext(null);
 
@@ -54,6 +55,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     signInWithEmail,
     signInWithGoogle,
+    serverUrl,
   };
 
   return <AuthContext value={authInfo}>{children}</AuthContext>;

@@ -7,10 +7,12 @@ import ButtonSubmit from "./ButtonSubmit";
 import { MdLogin } from "react-icons/md";
 import ButtonsPrimary from "./ButtonsPrimary";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 const Register = () => {
   const passwordCheck = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-  const { signUpWithEmail, signInWithGoogle, setUser } = use(AuthContext);
+  const { signUpWithEmail, signInWithGoogle, setUser, serverUrl } =
+    use(AuthContext);
   const navigate = useNavigate();
 
   const handleRegister = (e) => {
@@ -48,7 +50,16 @@ const Register = () => {
       .then((result) => {
         if (result.user) {
           toast.success("Registered successfully!");
-          //setUser(result.user);
+          const now = new Date();
+          const newUser = {
+            name,
+            email,
+            photoUrl,
+            createdAt: now.toLocaleString(),
+          };
+          const result = axios
+            .post(`${serverUrl}/users`, newUser)
+            .then((res) => console.log(res.data));
         }
       })
       .catch((error) => {
@@ -60,6 +71,7 @@ const Register = () => {
     signInWithGoogle()
       .then((result) => {
         toast.success("Registered with google successfully!");
+        navigate("/");
       })
       .catch((err) => {
         toast.error(`${err.message}`);
