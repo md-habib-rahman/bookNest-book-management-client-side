@@ -5,9 +5,11 @@ import ButtonSubmit from "./ButtonSubmit";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
+import axios from "axios";
+import { getAdditionalUserInfo } from "firebase/auth";
 
 const Login = () => {
-  const { user, signInWithEmail, signInWithGoogle } = use(AuthContext);
+  const { user, signInWithEmail, signInWithGoogle,serverUrl } = use(AuthContext);
   const navigate = useNavigate();
 
   const handleSignIn = (e) => {
@@ -34,10 +36,28 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     signInWithGoogle()
-      .then((result) => {
+      .then(async (result) => {
+        const isNewUser = getAdditionalUserInfo(result)?.isNewUser;
+        if (isNewUser) {
+          const now = new Date();
+          const googleUser = result.user;
+          console.log(result);
+          const userForDb = {
+            name: googleUser.displayName,
+            email: googleUser.email,
+            PhotoUrl: googleUser.photoURL,
+            createdAt: now.toLocaleString(),
+          };
+
+          const putGoogleUserToDb = await axios
+            .post(`${serverUrl}/users`, userForDb)
+            .then((res) => console.log(res.data));
+        }
         toast.success("Registered with google successfully!");
+
         navigate("/");
       })
+
       .catch((err) => {
         toast.error(`${err.message}`);
       });

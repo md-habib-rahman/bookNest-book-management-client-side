@@ -8,6 +8,7 @@ import { MdLogin } from "react-icons/md";
 import ButtonsPrimary from "./ButtonsPrimary";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { getAdditionalUserInfo } from "firebase/auth";
 
 const Register = () => {
   const passwordCheck = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
@@ -69,10 +70,28 @@ const Register = () => {
 
   const handleGoogleLogin = () => {
     signInWithGoogle()
-      .then((result) => {
+      .then(async (result) => {
+        const isNewUser = getAdditionalUserInfo(result)?.isNewUser;
+        if (isNewUser) {
+          const now = new Date();
+          const googleUser = result.user;
+          console.log(result);
+          const userForDb = {
+            name: googleUser.displayName,
+            email: googleUser.email,
+            PhotoUrl: googleUser.photoURL,
+            createdAt: now.toLocaleString(),
+          };
+
+          const putGoogleUserToDb = await axios
+            .post(`${serverUrl}/users`, userForDb)
+            .then((res) => console.log(res.data));
+        }
         toast.success("Registered with google successfully!");
+
         navigate("/");
       })
+
       .catch((err) => {
         toast.error(`${err.message}`);
       });

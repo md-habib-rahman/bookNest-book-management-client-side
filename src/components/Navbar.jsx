@@ -11,21 +11,25 @@ import { MdLogin, MdLogout } from "react-icons/md";
 import axios from "axios";
 
 const Navbar = () => {
-  const { user, logOut, serverUrl } = use(AuthContext);
+  const { user, logOut, serverUrl, loading } = use(AuthContext);
   const [dbUserInfo, setDbUserInfo] = useState(null);
 
   useEffect(() => {
-    axios.get(`${serverUrl}/users/${user?.email}`).then((res) => {
-      setDbUserInfo(res.data);
-    });
-  }, [user, serverUrl]);
+    console.log("Loading:", loading, "User:", user);
+    if (!loading && user?.email) {
+      axios.get(`${serverUrl}/users/${user?.email}`).then((res) => {
+        console.log("Fetched user info:", res.data);
+        setDbUserInfo(res.data);
+      });
+    }
+  }, [user, serverUrl, loading]);
 
   //   if (user) {
   //     const result = axios.get(`${serverUrl}/users/${user.email}`).then((res) => {
   //       setDbUserInfo(res.data);
   //     });
   //   }
-  console.log(dbUserInfo);
+  console.log(dbUserInfo?.PhotoUrl, dbUserInfo?.name);
 
   const handleLogOut = () => {
     Swal.fire({
@@ -142,7 +146,10 @@ const Navbar = () => {
             <div className="relative w-fit group">
               <div className="w-9 h-9 rounded-full border-2 border-primary p-[2px] cursor-pointer">
                 <img
-                  src={dbUserInfo?.photoUrl}
+                  src={
+                    dbUserInfo?.PhotoUrl ||
+                    "https://i.ibb.co/jZf74p9g/User-avatar-svg.png"
+                  }
                   alt="User Avatar"
                   className="w-full h-full object-cover rounded-full"
                 />
@@ -156,7 +163,7 @@ const Navbar = () => {
               >
                 <div className="p-4">
                   <p className="text-sm font-semibold border-b pb-2 mb-2 border-gray-300">
-                    {user.displayName || "User"}
+                    {dbUserInfo?.name || "User"}
                   </p>
                   <button
                     onClick={handleLogOut}
