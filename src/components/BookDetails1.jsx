@@ -8,7 +8,7 @@ import Loader from "./Loader";
 import Modal from "./Modal";
 import { toast } from "react-toastify";
 
-const BookDetails = () => {
+const BookDetails1 = () => {
   const { serverUrl, user, loading } = use(AuthContext);
   const { id } = useParams();
   const [book, setBook] = useState(null);
@@ -37,7 +37,7 @@ const BookDetails = () => {
   }
 
   return (
-    <main className="min-h-[calc(100vh-400px)] bg-base-300 ">
+    <main className="">
       <section className="w-10/12 mx-auto py-12 ">
         <div className="flex gap-4  flex-col md:flex-row  justify-center ">
           <div className="p-8 flex flex-col gap-2">
@@ -87,4 +87,4 @@ const BookDetails = () => {
   );
 };
 
-export default BookDetails;
+export default BookDetails1;
