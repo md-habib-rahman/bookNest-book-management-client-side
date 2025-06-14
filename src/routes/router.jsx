@@ -28,6 +28,8 @@ const router = createBrowserRouter([
       {
         path: "/book-details/:id",
         Component: BookDetails,
+		
+        
       },
       {
         path: "/categories-books/:category",

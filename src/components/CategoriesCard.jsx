@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const CategoriesCard = ({ category }) => {
   return (
-    <div className="bg-base-100 p-8 rounded-2xl flex flex-col items-center justify-center gap-4 shadow-xl">
+    <div className="bg-base-300 p-8 rounded-2xl flex flex-col items-center justify-center gap-4 shadow-xl">
       <img src={category.icon} alt="" className="w-50" />
       <Link to={`/categories-books/${category.name}`}>
 	  

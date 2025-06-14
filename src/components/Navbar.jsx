@@ -9,16 +9,17 @@ import { toast } from "react-toastify";
 import { IoMenuSharp } from "react-icons/io5";
 import { MdLogin, MdLogout } from "react-icons/md";
 import axios from "axios";
+import Loader from "./Loader";
 
 const Navbar = () => {
   const { user, logOut, serverUrl, loading } = use(AuthContext);
   const [dbUserInfo, setDbUserInfo] = useState(null);
 
   useEffect(() => {
-    console.log("Loading:", loading, "User:", user);
+    // console.log("Loading:", loading, "User:", user);
     if (!loading && user?.email) {
       axios.get(`${serverUrl}/users/${user?.email}`).then((res) => {
-        console.log("Fetched user info:", res.data);
+        // console.log("Fetched user info:", res.data);
         setDbUserInfo(res.data);
       });
     }
@@ -29,7 +30,7 @@ const Navbar = () => {
   //       setDbUserInfo(res.data);
   //     });
   //   }
-  console.log(dbUserInfo?.PhotoUrl, dbUserInfo?.name);
+  //   console.log(dbUserInfo?.PhotoUrl, dbUserInfo?.name);
 
   const handleLogOut = () => {
     Swal.fire({
@@ -119,6 +120,10 @@ const Navbar = () => {
       </li>
     </>
   );
+
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <div className="bg-base-100">
       <div className=" navbar lg:max-w-10/12 mx-auto ">
