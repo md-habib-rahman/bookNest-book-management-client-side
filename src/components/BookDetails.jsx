@@ -6,6 +6,7 @@ import { Rating } from "@smastrom/react-rating";
 import { BiCategory } from "react-icons/bi";
 import Loader from "./Loader";
 import Modal from "./Modal";
+import { toast } from "react-toastify";
 
 const BookDetails = () => {
   const { serverUrl, user, loading } = use(AuthContext);
@@ -61,7 +62,11 @@ const BookDetails = () => {
                 {book?.quantity} pcs available
               </p>
               <button
-                onClick={() => setShowModal(true)}
+                onClick={() =>
+                  user
+                    ? setShowModal(true)
+                    : toast.info("You need to log in to borrow a book")
+                }
                 className="btn btn-primary rounded-none w-1/2"
               >
                 Borrow Now
@@ -71,7 +76,12 @@ const BookDetails = () => {
         </div>
       </section>
       {showModal && (
-        <Modal dbUserInfo={dbUserInfo} setShowModal={setShowModal} book={book} />
+        <Modal
+          dbUserInfo={dbUserInfo}
+          setShowModal={setShowModal}
+          book={book}
+          setBook={setBook}
+        />
       )}
     </main>
   );

@@ -2,15 +2,18 @@ import React, { use, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 
 import ButtonSubmit from "./ButtonSubmit";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { getAdditionalUserInfo } from "firebase/auth";
 
 const Login = () => {
-  const { user, signInWithEmail, signInWithGoogle,serverUrl } = use(AuthContext);
+  const { user, signInWithEmail, signInWithGoogle, serverUrl } =
+    use(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state || "/";
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -20,7 +23,7 @@ const Login = () => {
 
     signInWithEmail(email, password)
       .then((result) => {
-        navigate("/");
+        navigate(from);
       })
       .catch((err) => {
         toast.error(`${err.message}`, {
@@ -64,7 +67,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center bg-base-200 px-4 min-h-[calc(100vh-69px-241px)]">
+    <div className="flex items-center justify-center bg-base-200 px-4 min-h-[calc(100vh-69px-241px)] py-12">
       <div className="w-full max-w-md bg-base-100 shadow-xl rounded-xl p-8">
         <h2 className="text-3xl font-bold text-center mb-6 text-primary">
           Login to BookNest

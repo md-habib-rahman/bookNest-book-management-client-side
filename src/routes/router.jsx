@@ -6,6 +6,8 @@ import Register from "../components/Register";
 import Login from "../components/Login";
 import BookCategories from "../pages/BookCategories";
 import BookDetails from "../components/BookDetails";
+import PrivateRoute from "../AuthProvider/PrivateRoute";
+import AddBooks from "../pages/AddBooks";
 const serverUrl = "http://localhost:3000";
 
 const router = createBrowserRouter([
@@ -28,8 +30,14 @@ const router = createBrowserRouter([
       {
         path: "/book-details/:id",
         Component: BookDetails,
-		
-        
+      },
+      {
+        path: "/add-books",
+        element: (
+          <PrivateRoute>
+            <AddBooks></AddBooks>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/categories-books/:category",
