@@ -108,7 +108,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/all-books"
+          to="/borrowed-books"
           className={({ isActive }) =>
             isActive
               ? "border-b-2 pb-1 border-primary text-primary font-semibold transition-all duration-200 ease-in-out"

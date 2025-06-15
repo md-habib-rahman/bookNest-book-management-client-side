@@ -8,7 +8,7 @@ import ButtonSubmit from "../components/ButtonSubmit";
 
 const AddBook = () => {
   const { register, handleSubmit, reset } = useForm();
-  const { serverUrl, user } = use(AuthContext);
+  const { serverUrl } = use(AuthContext);
 
   const onSubmit = (d) => {
     d.rating = parseInt(d.rating);
@@ -71,12 +71,13 @@ const AddBook = () => {
             >
               <option value="">Select Category</option>
               <option value="Novel">Novel</option>
-              <option value="Mystry">Mystry</option>
+              <option value="Mystery">Mystery</option>
               <option value="History">History</option>
               <option value="Engineering">Engineering</option>
               <option value="Drama">Drama</option>
               <option value="Science-Fiction">Science-Fiction</option>
               <option value="Biography">Biography</option>
+              <option value="Travel">Travel</option>
               <option value="Self Help">Self Help</option>
             </select>
             <input

@@ -7,7 +7,7 @@ const bookCategories = [
     icon: "https://i.ibb.co/1fzY5Yb4/science-fiction.png",
   },
   {
-    name: "Mystry",
+    name: "Mystery",
     icon: "https://i.ibb.co/wZ9X4wN6/thriller.png",
   },
   {

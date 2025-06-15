@@ -15,8 +15,8 @@ const BookCategoriesCard = ({ book }) => {
           <div className="text-white space-y-1">
             <h4 className="text-xl/5 font-semibold">{name}</h4>
             <div className="flex gap-2 items-center">
-              <Rating style={{ maxWidth: 70 }} value={book.rating} readOnly />
-              <p className="font-semibold text-sm">{book.rating}</p>
+              <Rating style={{ maxWidth: 70 }} value={rating} readOnly />
+              <p className="font-semibold text-sm">{rating}</p>
             </div>
             <p className="text-sm text-slate-300">{quantity} pcs available</p>
             <div className="badge badge-success">
