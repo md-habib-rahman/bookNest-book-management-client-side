@@ -14,9 +14,9 @@ const Home = () => {
 
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <title>Home | BookNest</title>
-      </Helmet>
+      </Helmet> */}
       <Banner />
       <Categories />
       <BookCoverTicker books={data} />

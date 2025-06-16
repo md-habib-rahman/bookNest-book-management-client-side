@@ -11,23 +11,48 @@ import Modal from "../components/Modal";
 import ButtonsPrimary from "../components/ButtonsPrimary";
 import ButtonsSecondary from "../components/ButtonsSecondary";
 import { Helmet } from "react-helmet";
+import { toast } from "react-toastify";
 
 const BookDetails = () => {
-  const { serverUrl, user, loading } = use(AuthContext);
+  const { serverUrl, user, loading, dbUserInfo } = use(AuthContext);
   const { id } = useParams();
   const [book, setBook] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [dbUserInfo, setDbUserInfo] = useState(null);
+ 
+  //   console.log(id)
 
-  useEffect(() => {
-    // console.log("Loading:", loading, "User:", user);
-    if (!loading && user?.email) {
-      axios.get(`${serverUrl}/users/${user?.email}`).then((res) => {
-        // console.log("Fetched user info:", res.data);
-        setDbUserInfo(res.data);
-      });
-    }
-  }, [user, serverUrl, loading]);
+  //   console.log(dbUserInfo);
+  //   const [dbUserInfo, setDbUserInfo] = useState(null);
+
+  //   useEffect(() => {
+  //     // console.log("Loading:", loading, "User:", user);
+
+  //     axios.get(`${serverUrl}/users/${user?.email}`).then((res) => {
+  //       console.log("Fetched user info:", res.data);
+  //       setDbUserInfo(res.data);
+  //     });
+  //   }, [user, serverUrl]);
+
+  //   useEffect(() => {
+  //     axios(`${serverUrl}/borrowed-books/${user?.email}`).then((res) => {
+  //       const isFound = res.data.find((book) => book._id === id);
+  //       isFound ? setBorrowStatus(false) : setBorrowStatus(true);
+  //     });
+  //   }, [id, serverUrl, user]);
+
+  const checkBorrowedExist = async(email, id) => {
+    const result = await axios.get(`${serverUrl}/borrowed-books/${email}`);
+    // console.log(result?.data, email);
+    const bookExist = result?.data?.find((book) => book.bookId == id);
+    // console.log(bookExist);
+    bookExist
+      ? toast.error("You allready borrowed this book")
+      : setShowModal(true);
+    // setBorrowStatus();
+    // bookExist ? setBorrowStatus(false) : setBorrowStatus(true);
+  };
+  //   checkBorrowedExist(user?.email, id).then((res) => setBorrowStatus(res));
+  //   checkBorrowedExist(user?.email, id);
 
   useEffect(() => {
     axios(`${serverUrl}/book-details/${id}`).then((res) => {
@@ -41,9 +66,9 @@ const BookDetails = () => {
 
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <title>Book Details | BookNest</title>
-      </Helmet>
+      </Helmet> */}
       <main className=" bg-[#f2e9ff] flex items-center justify-center py-12 px-4">
         <section className="w-full max-w-6xl bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row transition-all">
           <div className="md:w-1/2 bg-base-200 flex flex-col text-white items-center justify-center p-8">
@@ -91,7 +116,7 @@ const BookDetails = () => {
               <p className="text-sm text-violet-700 font-semibold">
                 {book.quantity} pcs available
               </p>
-              <button onClick={() => setShowModal(true)}>
+              <button onClick={() => checkBorrowedExist(user?.email, id)}>
                 <ButtonsSecondary text={"Borrow Now"} />
               </button>
             </div>

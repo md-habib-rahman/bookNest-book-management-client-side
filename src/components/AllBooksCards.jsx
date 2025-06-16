@@ -6,9 +6,9 @@ import { Link } from "react-router";
 
 const AllBooksCards = ({ book }) => {
   return (
-    <div className="flex bg-base-100 gap-8 rounded-xl shadow-lg px-2 mb-6 pb-4 relative">
-      <div className="-mt-6 w-60 h-50 rounded-lg">
-        <img src={book.image} alt="" className="w-full h-full object-fill" />
+    <div className="flex bg-base-100 gap-4 rounded-xl shadow-lg px-2 mb-6 pb-4 relative">
+      <div className="-mt-6 w-70 h-40 rounded-lg overflow-hidden">
+        <img src={book.image} alt="" className="w-full h-full object-center object-cover" />
       </div>
       <div className="py-4 space-y-2">
         <h4 className="text-primary font-bold text-xl">{book.name}</h4>
@@ -28,7 +28,7 @@ const AllBooksCards = ({ book }) => {
         </div>
         <p className="text-sm text-gray-400">{book.shortDescription}</p>
       </div>
-      <div className="text-primary/60 hover:text-primary transition-all  absolute right-1 top-1">
+      <div className="text-primary/60 hover:text-primary transition-all  absolute right-2 top-2">
         <Link to={`/update-book/${book._id}`}>
           <FiEdit size={24} />
         </Link>

@@ -13,7 +13,7 @@ const BookCoverTicker = ({ books }) => {
       <Marquee pauseOnHover={true} speed={40}>
         <div className="flex gap-6 mr-5">
           {books.map((book, index) => (
-            <Link to={`/book-details/${book?._id}`}>
+            <Link to={`/book-details/${book?._id}`}  key={book._id}>
               <motion.div
                 key={index}
                 className="relative min-w-[200px] h-72 rounded-md shadow-md overflow-hidden cursor-pointer"

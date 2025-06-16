@@ -11,7 +11,8 @@ import AddBooks from "../pages/AddBook";
 import BookDetails from "../pages/BookDetails";
 import AllBook from "../pages/AllBook";
 import BorrowedBooks from "../pages/BorrowedBooks";
-import UpdateBook from "../components/UpdateBook";
+import UpdateBook from "../pages/UpdateBook";
+
 const serverUrl = "http://localhost:3000";
 
 const router = createBrowserRouter([

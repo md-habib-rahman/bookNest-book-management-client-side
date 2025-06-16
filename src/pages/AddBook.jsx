@@ -31,9 +31,9 @@ const AddBook = () => {
 
   return (
     <section className="min-h-[calc(100vh-400px)] bg-base-300 flex justify-center items-center p-4">
-      <Helmet>
+     {/* <Helmet> 
         <title>Add Book | BookNest</title>
-      </Helmet>
+      </Helmet> */}
       <div className=" w-full md:w-10/12 p-6 bg-white rounded-xl shadow-md">
         <h2 className="text-2xl font-bold text-center text-primary mb-6">
           Add a New Book

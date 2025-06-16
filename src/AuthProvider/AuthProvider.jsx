@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.config";
+import axios from "axios";
 const serverUrl = "http://localhost:3000";
 
 export const AuthContext = createContext(null);
@@ -16,6 +17,17 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const provider = new GoogleAuthProvider();
+  const [dbUserInfo, setDbUserInfo] = useState(null);
+
+  useEffect(() => {
+    if (user?.email) {
+      // console.log("use effect hit");
+      axios(`${serverUrl}/users/${user.email}`).then((res) => {
+        setDbUserInfo(res.data);
+        // console.log("Fetched dbUserInfo:", res.data);
+      });
+    }
+  }, [user]);
 
   const signUpWithEmail = (email, password) => {
     setLoading(true);
@@ -56,6 +68,7 @@ const AuthProvider = ({ children }) => {
     signInWithEmail,
     signInWithGoogle,
     serverUrl,
+    dbUserInfo,
   };
 
   return <AuthContext value={authInfo}>{children}</AuthContext>;
