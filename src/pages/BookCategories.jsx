@@ -1,6 +1,7 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router";
 import BookCategoriesCard from "../components/BookCategoriesCard";
+import { Helmet } from "react-helmet";
 
 const BookCategories = () => {
   const books = useLoaderData();
@@ -11,6 +12,9 @@ const BookCategories = () => {
 
   return (
     <main className="bg-white py-16 min-h-[clac(100vh-400px)]">
+      <Helmet>
+        <title>Book Categories | {category} | BookNest</title>
+      </Helmet>
       <div className="w-10/12 mx-auto ">
         <div className="text-center">
           <h3 className="font-bold text-3xl">{`Total ${quantity} books available of ${category} Category`}</h3>
