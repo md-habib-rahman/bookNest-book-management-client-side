@@ -23,7 +23,7 @@ const Register = () => {
     const email = form.email.value;
     const photoUrl = form.photoUrl.value;
     const password = form.password.value;
-    console.log(name);
+    // console.log(name);
     if (!passwordCheck.test(password)) {
       toast.error(
         <div>
@@ -60,7 +60,7 @@ const Register = () => {
           };
           const result = axios
             .post(`${serverUrl}/users`, newUser)
-            .then((res) => console.log(res.data));
+            .then((res) => res.data);
         }
       })
       .catch((error) => {
@@ -75,7 +75,7 @@ const Register = () => {
         if (isNewUser) {
           const now = new Date();
           const googleUser = result.user;
-          console.log(result);
+          //   console.log(result);
           const userForDb = {
             name: googleUser.displayName,
             email: googleUser.email,
@@ -83,9 +83,9 @@ const Register = () => {
             createdAt: now.toLocaleString(),
           };
 
-          const putGoogleUserToDb = await axios
+          await axios
             .post(`${serverUrl}/users`, userForDb)
-            .then((res) => console.log(res.data));
+            .then((res) => res.data);
         }
         toast.success("Registered with google successfully!");
 

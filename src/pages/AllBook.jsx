@@ -7,7 +7,7 @@ import AllBookTable from "../components/AllBookTable";
 
 const AllBook = () => {
   const books = useLoaderData();
-  console.log(books);
+//   console.log(books);
   const [viewState, SetViewState] = useState("card");
 
   const handleViewChange = (e) => {

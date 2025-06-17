@@ -44,7 +44,7 @@ const Login = () => {
         if (isNewUser) {
           const now = new Date();
           const googleUser = result.user;
-          console.log(result);
+          //   console.log(result);
           const userForDb = {
             name: googleUser.displayName,
             email: googleUser.email,
@@ -54,9 +54,8 @@ const Login = () => {
 
           const putGoogleUserToDb = await axios
             .post(`${serverUrl}/users`, userForDb)
-            .then((res) => console.log(res.data));
+            .then((res) => res.data);
         }
-        toast.success("Registered with google successfully!");
 
         navigate("/");
       })

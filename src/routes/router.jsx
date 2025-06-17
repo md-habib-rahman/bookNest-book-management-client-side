@@ -13,7 +13,7 @@ import AllBook from "../pages/AllBook";
 import BorrowedBooks from "../pages/BorrowedBooks";
 import UpdateBook from "../pages/UpdateBook";
 
-const serverUrl = "http://localhost:3000";
+const serverUrl = "https://booknest-lime.vercel.app";
 
 const router = createBrowserRouter([
   {
@@ -47,8 +47,7 @@ const router = createBrowserRouter([
             <UpdateBook />
           </PrivateRoute>
         ),
-        loader: ({ params }) =>
-          fetch(`${serverUrl}/book-details/${params.id}`),
+        loader: ({ params }) => fetch(`${serverUrl}/book-details/${params.id}`),
       },
       {
         path: "/borrowed-books",

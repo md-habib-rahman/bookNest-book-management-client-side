@@ -30,7 +30,7 @@ const BookDetails1 = () => {
       setBook(res.data);
     });
   }, [id, serverUrl]);
-  console.log(book);
+//   console.log(book);
 
   if (!book) {
     return <Loader />;

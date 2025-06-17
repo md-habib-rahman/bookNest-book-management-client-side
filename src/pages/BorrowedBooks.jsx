@@ -11,13 +11,19 @@ const BorrowedBooks = () => {
   const { user, serverUrl } = use(AuthContext);
   const [books, setBooks] = useState();
   const [loading, setLoading] = useState(true);
+//   console.log(user?.accessToken);
 
   useEffect(() => {
     const fetchBorrowedBooks = async () => {
       if (!user?.email) return; // avoid calling API with undefined email
       setLoading(true);
       const res = await axios(
-        `${serverUrl}/borrowed-books-lists/${user.email}`
+        `${serverUrl}/borrowed-books-lists/${user.email}`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        }
       );
       //   console.log(res.data);
       setBooks(res.data);
@@ -26,7 +32,7 @@ const BorrowedBooks = () => {
     fetchBorrowedBooks();
   }, [user, serverUrl]);
 
-  console.log(books);
+//   console.log(books);
   if (loading) return <Loader></Loader>;
   if (!user) {
     return <Loader></Loader>;
@@ -68,7 +74,11 @@ const BorrowedBooks = () => {
         Borrowed Book Lists
       </h2>
       <div className="overflow-x-auto w-9/12 mx-auto">
-        {books.length===0&&<p className="text-center text-amber-600 mt-2 mb-10">No borrowed books found</p>}
+        {books.length === 0 && (
+          <p className="text-center text-amber-600 mt-2 mb-10">
+            No borrowed books found
+          </p>
+        )}
         <table className="table">
           <thead>
             <tr>
@@ -84,9 +94,8 @@ const BorrowedBooks = () => {
               <th>Action</th>
             </tr>
           </thead>
-		  
+
           <tbody>
-			
             {books.map((book, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>

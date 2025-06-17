@@ -9,7 +9,8 @@ import {
 import React, { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.config";
 import axios from "axios";
-const serverUrl = "http://localhost:3000";
+// const serverUrl = "http://localhost:3000";
+const serverUrl = "https://booknest-lime.vercel.app";
 
 export const AuthContext = createContext(null);
 
@@ -20,13 +21,19 @@ const AuthProvider = ({ children }) => {
   const [dbUserInfo, setDbUserInfo] = useState(null);
 
   useEffect(() => {
-    if (user?.email) {
-      // console.log("use effect hit");
-      axios(`${serverUrl}/users/${user.email}`).then((res) => {
-        setDbUserInfo(res.data);
-        // console.log("Fetched dbUserInfo:", res.data);
-      });
-    }
+    const fetchDbUserInfo = async () => {
+      if (user?.email) {
+        try {
+          const res = await axios(`${serverUrl}/users/${user.email}`);
+          setDbUserInfo(res.data);
+          // console.log("Fetched dbUserInfo:", res.data);
+        } catch (error) {
+          console.error("Failed to fetch user info:", error);
+        }
+      }
+    };
+
+    fetchDbUserInfo();
   }, [user]);
 
   const signUpWithEmail = (email, password) => {
@@ -53,7 +60,7 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currenUser) => {
       setLoading(false);
       setUser(currenUser);
-      console.log("logged in user", currenUser);
+    //   console.log("logged in user", currenUser);
     });
     return () => unSubscribe();
   }, []);

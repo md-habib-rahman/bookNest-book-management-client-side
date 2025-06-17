@@ -12,18 +12,18 @@ import axios from "axios";
 import Loader from "./Loader";
 
 const Navbar = () => {
-  const { user, logOut, serverUrl, loading } = use(AuthContext);
-  const [dbUserInfo, setDbUserInfo] = useState(null);
+  const { user, logOut, dbUserInfo, loading } = use(AuthContext);
+  //   const [dbUserInfo, setDbUserInfo] = useState(null);
 
-  useEffect(() => {
-    // console.log("Loading:", loading, "User:", user);
-    if (!loading && user?.email) {
-      axios.get(`${serverUrl}/users/${user?.email}`).then((res) => {
-        // console.log("Fetched user info:", res.data);
-        setDbUserInfo(res.data);
-      });
-    }
-  }, [user, serverUrl, loading]);
+  //   useEffect(() => {
+  //     // console.log("Loading:", loading, "User:", user);
+  //     if (!loading && user?.email) {
+  //       axios.get(`${serverUrl}/users/${user?.email}`).then((res) => {
+  //         // console.log("Fetched user info:", res.data);
+  //         setDbUserInfo(res.data);
+  //       });
+  //     }
+  //   }, [user, serverUrl, loading]);
 
   //   if (user) {
   //     const result = axios.get(`${serverUrl}/users/${user.email}`).then((res) => {
@@ -31,7 +31,7 @@ const Navbar = () => {
   //     });
   //   }
   //   console.log(dbUserInfo?.PhotoUrl, dbUserInfo?.name);
-
+//   console.log(dbUserInfo);
   const handleLogOut = () => {
     Swal.fire({
       title: "Want to Logout?",
@@ -152,7 +152,7 @@ const Navbar = () => {
               <div className="w-9 h-9 rounded-full border-2 border-primary p-[2px] cursor-pointer">
                 <img
                   src={
-                    dbUserInfo?.PhotoUrl ||
+                    dbUserInfo?.PhotoUrl ? dbUserInfo?.PhotoUrl:
                     "https://i.ibb.co/jZf74p9g/User-avatar-svg.png"
                   }
                   alt="User Avatar"

@@ -14,7 +14,7 @@ const AddBook = () => {
   const onSubmit = (d) => {
     d.rating = parseInt(d.rating);
     d.quantity = parseInt(d.quantity);
-    console.log(d);
+    // console.log(d);
 
     axios
       .post(`${serverUrl}/add-book`, d)

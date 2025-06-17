@@ -5,7 +5,9 @@ import Categories from "./Categories";
 import BookCoverTicker from "./BookCoverTicker";
 import axios from "axios";
 import { Helmet } from "react-helmet";
-const serverUrl = "http://localhost:3000";
+import LibraryInfoSection from "./LibraryInfoSection";
+// const serverUrl = "http://localhost:3000";
+const serverUrl = "https://booknest-lime.vercel.app";
 
 const booksPromise = axios(`${serverUrl}/books`);
 
@@ -19,6 +21,7 @@ const Home = () => {
       </Helmet> */}
       <Banner />
       <Categories />
+      <LibraryInfoSection />
       <BookCoverTicker books={data} />
     </>
   );

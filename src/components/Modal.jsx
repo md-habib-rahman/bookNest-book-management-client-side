@@ -7,7 +7,7 @@ import axios from "axios";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Modal = ({ dbUserInfo, setShowModal, book, setBook }) => {
-  console.log(dbUserInfo);
+//   console.log(dbUserInfo);
   const { serverUrl } = use(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
