@@ -33,15 +33,17 @@ const Modal = ({ dbUserInfo, setShowModal, book, setBook }) => {
       .post(`${serverUrl}/book-borrow`, newEntry)
       .then((res) => {
         if (res.data) {
-          axios.patch(`${serverUrl}/update-quantity/${bookId}`).then(() => {
-            // console.log("Quantity updated");
-            axios.get(`${serverUrl}/book-details/${bookId}`).then((res) => {
-              // console.log("Updated Book:", res.data);
-              setBook(res.data);
-              toast.success("Book borrowed successfully!");
-              setShowModal(false);
+          axios
+            .patch(`${serverUrl}/update-quantity/${bookId}`, { q: -1 })
+            .then(() => {
+              // console.log("Quantity updated");
+              axios.get(`${serverUrl}/book-details/${bookId}`).then((res) => {
+                // console.log("Updated Book:", res.data);
+                setBook(res.data);
+                toast.success("Book borrowed successfully!");
+                setShowModal(false);
+              });
             });
-          });
         }
       })
       .catch((err) => {
