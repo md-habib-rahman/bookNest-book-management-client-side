@@ -1,6 +1,8 @@
 # 📚 BookNest Library Management Web App
 
-!(https://book-nest-auth.web.app/assets/bookNestLogo-5fkvElPU.png)
+<p align="center">
+  <img src="https://book-nest-auth.web.app/assets/bookNestLogo-5fkvElPU.png" alt="Library Logo" width="150"/>
+</p>
 
 This is a full-stack Library Management System built with **React**, **Firebase Authentication**, **JWT**, and **Node.js + Express** for the backend. It allows users to browse, borrow, and manage books securely.
 
