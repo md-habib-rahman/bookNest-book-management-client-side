@@ -50,11 +50,7 @@ This is a full-stack Library Management System built with **React**, **Firebase 
 
 ---
 
-## 🧪 Getting Started
-
-### 1. Clone this Repository
-
-```bash
+## Live Site Link: https://book-nest-auth.web.app/
 git clone https://github.com/Programming-Hero-Web-Course4/b11a11-client-side-md-habib-rahman
 cd project-dir
 
