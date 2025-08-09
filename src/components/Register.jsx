@@ -9,12 +9,14 @@ import ButtonsPrimary from "./ButtonsPrimary";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { getAdditionalUserInfo } from "firebase/auth";
+import useAxiosInstance from "../api/useAxiosInstance";
 
 const Register = () => {
   const passwordCheck = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
   const { signUpWithEmail, signInWithGoogle, setUser, serverUrl } =
     use(AuthContext);
   const navigate = useNavigate();
+  const axiosInstance = useAxiosInstance();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -51,14 +53,16 @@ const Register = () => {
       .then((result) => {
         if (result.user) {
           toast.success("Registered successfully!");
+          navigate("/");
           const now = new Date();
           const newUser = {
             name,
             email,
             photoUrl,
             createdAt: now.toLocaleString(),
+            role: "user",
           };
-          const result = axios
+          const result = axiosInstance
             .post(`${serverUrl}/users`, newUser)
             .then((res) => res.data);
         }
@@ -81,11 +85,10 @@ const Register = () => {
             email: googleUser.email,
             PhotoUrl: googleUser.photoURL,
             createdAt: now.toLocaleString(),
+            role: "user",
           };
 
-          await axios
-            .post(`${serverUrl}/users`, userForDb)
-            .then((res) => res.data);
+          await axiosInstance.post(`/users`, userForDb).then((res) => res.data);
         }
         toast.success("Registered with google successfully!");
 

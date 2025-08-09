@@ -59,12 +59,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/all-books",
-        element: (
-          <PrivateRoute>
-            <AllBook />
-          </PrivateRoute>
-        ),
-        loader: () => fetch(`${serverUrl}/books`),
+        Component: AllBook,
+        // loader: () => fetch(`${serverUrl}/books`),
       },
       {
         path: "/add-books",

@@ -31,7 +31,7 @@ const Navbar = () => {
   //     });
   //   }
   //   console.log(dbUserInfo?.PhotoUrl, dbUserInfo?.name);
-//   console.log(dbUserInfo);
+  //   console.log(dbUserInfo);
   const handleLogOut = () => {
     Swal.fire({
       title: "Want to Logout?",
@@ -94,30 +94,23 @@ const Navbar = () => {
           All Books
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/add-books"
-          className={({ isActive }) =>
-            isActive
-              ? "border-b-2 pb-1 border-primary text-primary font-semibold transition-all duration-200 ease-in-out"
-              : "hover:text-primary  transition-all duration-200 ease-in-out"
-          }
-        >
-          Add Book
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/borrowed-books"
-          className={({ isActive }) =>
-            isActive
-              ? "border-b-2 pb-1 border-primary text-primary font-semibold transition-all duration-200 ease-in-out"
-              : "hover:text-primary  transition-all duration-200 ease-in-out"
-          }
-        >
-          Borrowed Books
-        </NavLink>
-      </li>
+
+      {user?.role === "user" && (
+        <>
+          <li>
+            <NavLink
+              to="/borrowed-books"
+              className={({ isActive }) =>
+                isActive
+                  ? "border-b-2 pb-1 border-primary text-primary font-semibold transition-all duration-200 ease-in-out"
+                  : "hover:text-primary  transition-all duration-200 ease-in-out"
+              }
+            >
+              Borrowed Books
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 
@@ -125,7 +118,7 @@ const Navbar = () => {
     return <Loader />;
   }
   return (
-    <div className="bg-base-100">
+    <div className="bg-base-100 py-2">
       <div className=" navbar lg:max-w-10/12 mx-auto ">
         <div className="navbar-start">
           <div className="dropdown">
@@ -144,7 +137,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex ">
-          <ul className="flex gap-6 px-1 ">{links}</ul>
+          <ul className="flex gap-10 px-1 ">{links}</ul>
         </div>
         <div className="navbar-end space-x-2   ">
           {user ? (
@@ -152,8 +145,9 @@ const Navbar = () => {
               <div className="w-9 h-9 rounded-full border-2 border-primary p-[2px] cursor-pointer">
                 <img
                   src={
-                    dbUserInfo?.PhotoUrl ? dbUserInfo?.PhotoUrl:
-                    "https://i.ibb.co/jZf74p9g/User-avatar-svg.png"
+                    dbUserInfo?.PhotoUrl
+                      ? dbUserInfo?.PhotoUrl
+                      : "https://i.ibb.co/jZf74p9g/User-avatar-svg.png"
                   }
                   alt="User Avatar"
                   className="w-full h-full object-cover rounded-full"
@@ -181,10 +175,10 @@ const Navbar = () => {
               </div>
             </div>
           ) : (
-            <>
+            <div className="flex gap-4">
               <ButtonsPrimary text="Login" dest="/login" icon={MdLogin} />
               <ButtonsSecondary text="Register" dest="/register" />
-            </>
+            </div>
           )}
         </div>
       </div>

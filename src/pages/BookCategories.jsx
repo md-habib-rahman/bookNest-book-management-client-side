@@ -8,7 +8,7 @@ const BookCategories = () => {
   const { category } = useParams();
   let quantity = 0;
   books && (quantity = books.length);
-  console.log(books);
+//   console.log(books);
 
   return (
     <main className="bg-white py-16 min-h-[clac(100vh-400px)]">

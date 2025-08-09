@@ -1,14 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { useLoaderData } from "react-router";
 import AllBooksCards from "../components/AllBooksCards";
 
 import AllBookTable from "../components/AllBookTable";
+import useAxiosInstance from "../api/useAxiosInstance";
+import Loader from "../components/Loader";
 
 const AllBook = () => {
-  const books = useLoaderData();
-//   console.log(books);
+  const axiosInstance = useAxiosInstance();
+  //   const books = useLoaderData();
+  //   console.log(books);
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const [viewState, SetViewState] = useState("card");
+
+  useEffect(() => {
+    axiosInstance
+      .get("/books")
+      .then((res) => {
+        setBooks(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message || "Something went wrong");
+        setLoading(false);
+      });
+  }, []);
 
   const handleViewChange = (e) => {
     if (e.target.value === "card") {
@@ -17,6 +36,8 @@ const AllBook = () => {
       SetViewState("table");
     }
   };
+  if (loading) return <Loader />;
+  //   if(error) return
   return (
     <>
       {/* <Helmet>
