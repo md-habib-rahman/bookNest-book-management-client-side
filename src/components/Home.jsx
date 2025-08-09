@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet";
 import LibraryInfoSection from "./LibraryInfoSection";
 import useAxiosInstance from "../api/useAxiosInstance";
 import Loader from "./Loader";
+import Testimonials from "./Testimonials";
 // const serverUrl = "http://localhost:3000";
 const serverUrl = "https://booknest-lime.vercel.app";
 
@@ -43,6 +44,7 @@ const Home = () => {
       <Categories />
       <LibraryInfoSection />
       <BookCoverTicker books={books} />
+      <Testimonials />
     </>
   );
 };

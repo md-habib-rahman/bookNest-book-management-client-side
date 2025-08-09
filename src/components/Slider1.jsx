@@ -7,10 +7,10 @@ import ButtonsPrimary from "./ButtonsPrimary";
 
 const Slider1 = () => {
   return (
-    <section className="bg-base-200 text-white py-16 ">
+    <section className="bg-base-300 text-white py-16 ">
       <div className="w-10/12 mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
         <div className="max-w-2xl text-left">
-          <h2 className="text-4xl font-fredoka md:text-6xl font-bold mb-4">
+          <h2 className="text-4xl font-fredoka md:text-6xl font-bold mb-4 text-primary">
             Bring Readers Together
           </h2>
           <p className="text-lg md:text-xl mb-6">

@@ -9,13 +9,17 @@
   name: "light";
   default: true;
   /* --color-base-100: #e9e1f7; */
-  --color-base-100: #f7f3ff;
+  --color-base-100: #f5f5fa;
   /* --color-base-200: #f7f3ff; */
-  --color-base-200: #b287fd;
-  --color-base-300: #eae1ff;
+  --color-base-200: #e1e1f0;
+  --color-base-300: #bfbfe6;
+
   --color-neutral: #212121;
+  --color-base-content: #2e2e3a;
 
   --color-primary: #6f50d6;
+  --color-secondary: #4ac1a1;
+  --color-accent: #f29e4c;
 }
 /* @plugin "daisyui" {
   themes: light --default;
@@ -45,7 +49,6 @@
   height: auto !important;
   min-height: 0 !important;
 }
-
 
 .preserve-3d {
   transform-style: preserve-3d;
