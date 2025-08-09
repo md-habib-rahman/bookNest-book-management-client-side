@@ -84,6 +84,18 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
+          to="/about-us"
+          className={({ isActive }) =>
+            isActive
+              ? "border-b-2 pb-1 border-primary text-primary font-semibold transition-all duration-200 ease-in-out"
+              : "hover:text-primary  transition-all duration-200 ease-in-out"
+          }
+        >
+          About Us
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/all-books"
           className={({ isActive }) =>
             isActive
@@ -94,8 +106,24 @@ const Navbar = () => {
           All Books
         </NavLink>
       </li>
+      {dbUserInfo?.role === "admin" && (
+        <>
+          <li>
+            <NavLink
+              to="/add-books"
+              className={({ isActive }) =>
+                isActive
+                  ? "border-b-2 pb-1 border-primary text-primary font-semibold transition-all duration-200 ease-in-out"
+                  : "hover:text-primary  transition-all duration-200 ease-in-out"
+              }
+            >
+              Add Books
+            </NavLink>
+          </li>
+        </>
+      )}
 
-      {user?.role === "user" && (
+      {dbUserInfo?.role === "user" && (
         <>
           <li>
             <NavLink
