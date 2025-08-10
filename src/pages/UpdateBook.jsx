@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import ButtonSubmit from "../components/ButtonSubmit";
+import useAxiosInstance from "../api/useAxiosInstance";
 
 const bookCategories = [
   "Novel",
@@ -25,7 +26,8 @@ const bookCategories = [
 const UpdateBook = () => {
   const book = useLoaderData();
   const navigate = useNavigate();
-  const { serverUrl } = use(AuthContext);
+  //const { serverUrl } = use(AuthContext);
+  const axiosInstance = useAxiosInstance();
 
   const { register, handleSubmit } = useForm({
     defaultValues: book,
@@ -34,8 +36,8 @@ const UpdateBook = () => {
   const onSubmit = (d) => {
     const { _id, ...UpdatedBook } = d;
     // console.log(UpdatedBook);
-    axios
-      .patch(`${serverUrl}/update-book/${book._id}`, UpdatedBook)
+    axiosInstance
+      .patch(`/update-book/${book._id}`, UpdatedBook)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           toast.success("Book updated successfully!");

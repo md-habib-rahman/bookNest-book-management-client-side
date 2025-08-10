@@ -30,7 +30,7 @@ const AddBook = () => {
   };
 
   return (
-    <section className="min-h-[calc(100vh-400px)] bg-base-300 flex justify-center items-center p-4">
+    <section className=" flex justify-center items-center p-4">
      {/* <Helmet> 
         <title>Add Book | BookNest</title>
       </Helmet> */}

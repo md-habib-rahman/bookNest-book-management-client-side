@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import { Outlet, NavLink, Link } from "react-router";
 import {
   FiHome,
@@ -9,24 +9,37 @@ import {
   FiX,
 } from "react-icons/fi";
 import logo from "../assets/bookNestLogoInverse.png";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import Loader from "../components/Loader";
+import { FaBook } from "react-icons/fa";
 
 const Dashboard = () => {
+  const { dbUserInfo, loading } = use(AuthContext);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const navLinks = [
     { to: "/dashboard", label: "Home", icon: <FiHome size={20} /> },
-    { to: "/dashboard/profile", label: "Profile", icon: <FiUser size={20} /> },
+    { to: "/dashboard/users", label: "Users", icon: <FiUser size={20} /> },
     {
       to: "/dashboard/notifications",
       label: "Notifications",
       icon: <FiBell size={20} />,
     },
     {
-      to: "/dashboard/settings",
-      label: "Settings",
+      to: "/dashboard/add-books",
+      label: "Add Books",
       icon: <FiSettings size={20} />,
     },
+    {
+      to: "/dashboard/all-books",
+      label: "All Books",
+      icon: <FaBook size={20} />,
+    },
   ];
+
+  if (loading) return <Loader />;
+
+  if (dbUserInfo?.role !== "admin") return <p>You are not allowed</p>;
 
   return (
     <div className="flex min-h-screen bg-base-100 text-base-content font-sans">
@@ -76,6 +89,7 @@ const Dashboard = () => {
             <NavLink
               key={to}
               to={to}
+              end
               onClick={() => setDrawerOpen(false)}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2 rounded-lg transition-colors
@@ -91,13 +105,13 @@ const Dashboard = () => {
             </NavLink>
           ))}
         </nav>
-        <div className="p-6 border-t border-base-200 text-sm text-base-content opacity-70">
-          &copy; 2025 Your Company
+        <div className="p-6 border-t border-base-200 text-sm text-base-100 opacity-70">
+          &copy; 2025 BookNest
         </div>
       </aside>
 
       {/* Main Content */}
-      <main className="flex-grow p-6 md:p-8 bg-base-100 min-h-screen md:ml-64">
+      <main className="flex-grow p-6 md:p-8 bg-base-100 min-h-screen ">
         {/* Top Navbar (hidden on mobile, visible on md+) */}
         <header className="hidden md:flex justify-between items-center mb-8">
           <h1 className="text-3xl font-extrabold text-primary">Dashboard</h1>

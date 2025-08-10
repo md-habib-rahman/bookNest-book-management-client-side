@@ -15,6 +15,11 @@ import UpdateBook from "../pages/UpdateBook";
 import AboutUs from "../pages/AboutUs";
 import Contact from "../pages/Contact";
 import Dashboard from "../layouts/DashboardLayout";
+import Notifications from "../components/Notifications";
+import UsersList from "../components/UsersList";
+import AddBook from "../pages/AddBook";
+import DashboardChart from "../components/DashboardChart";
+import AllBookDashboard from "../components/AllBookDashboard";
 
 const serverUrl = "https://booknest-lime.vercel.app";
 
@@ -97,6 +102,28 @@ const router = createBrowserRouter([
         <Dashboard />
       </PrivateRoute>
     ),
+    children: [
+      {
+        path: "/dashboard",
+        Component: DashboardChart,
+      },
+      {
+        path: "notifications",
+        Component: Notifications,
+      },
+      {
+        path: "users",
+        Component: UsersList,
+      },
+      {
+        path: "add-books",
+        Component: AddBook,
+      },
+      {
+        path: "all-books",
+        Component: AllBookDashboard,
+      },
+    ],
   },
   {
     path: "/*",
