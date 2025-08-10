@@ -9,10 +9,12 @@ import LibraryInfoSection from "./LibraryInfoSection";
 import useAxiosInstance from "../api/useAxiosInstance";
 import Loader from "./Loader";
 import Testimonials from "./Testimonials";
+import Stats from "./Stats";
+import FeaturedBooks from "./FeaturedBooks";
 // const serverUrl = "http://localhost:3000";
-const serverUrl = "https://booknest-lime.vercel.app";
+// const serverUrl = "https://booknest-lime.vercel.app";
 
-const booksPromise = axios(`${serverUrl}/books`);
+// const booksPromise = axios(`${serverUrl}/books`);
 
 const Home = () => {
   const axiosInstance = useAxiosInstance();
@@ -43,7 +45,9 @@ const Home = () => {
       <Banner />
       <Categories />
       <LibraryInfoSection />
+      <FeaturedBooks />
       <BookCoverTicker books={books} />
+      <Stats />
       <Testimonials />
     </>
   );

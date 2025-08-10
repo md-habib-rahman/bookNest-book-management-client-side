@@ -43,8 +43,8 @@ const AllBook = () => {
       {/* <Helmet>
         <title>All Book | BookNest</title>
       </Helmet> */}
-      <section className="bg-base-300 py-12">
-        <div className="w-10/12 mx-auto text-center space-y-2 mb-8">
+      <section className="bg-base-100 py-12">
+        <div className="w-full md:w-10/12 lg:w-8/12 mx-auto text-center space-y-2 mb-8">
           <h2 className="font-bold text-4xl text-primary">
             Explore Our Complete Book Collection
           </h2>
@@ -53,7 +53,7 @@ const AllBook = () => {
             stories—all in one place.
           </p>
         </div>
-        <div className="w-10/12 mx-auto">
+        {/* <div className="w-10/12 mx-auto">
           <select
             defaultValue="Choose View"
             className="select focus:outline-none"
@@ -63,21 +63,23 @@ const AllBook = () => {
             <option value={"card"}>Card View</option>
             <option value={"table"}>Table View</option>
           </select>
-        </div>
+        </div> */}
 
         <div
-          className={`w-10/12 mx-auto py-12 ${
-            viewState === "card" &&
-            "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
-          }`}
+          className={`w-full md:w-10/12 lg:w-8/12 mx-auto py-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8`}
         >
-          {viewState === "card" ? (
+          {
+            books.map((book) => (
+              <AllBooksCards book={book} key={book._id}></AllBooksCards>
+            ))
+            /* {viewState === "card" ? (
             books.map((book) => (
               <AllBooksCards book={book} key={book._id}></AllBooksCards>
             ))
           ) : (
             <AllBookTable books={books}></AllBookTable>
-          )}
+          )} */
+          }
         </div>
       </section>
     </>

@@ -16,6 +16,7 @@ import about2 from "../assets/about2.jpg";
 import ButtonsSecondary from "../components/ButtonsSecondary";
 import CountUp from "react-countup";
 import Testimonials from "../components/Testimonials";
+import Stats from "../components/Stats";
 
 const missionData = [
   {
@@ -37,33 +38,9 @@ const missionData = [
       "Our mission is to make books accessible to everyone. We are continually opening new locations and enhancing our online platform to reach more readers.",
   },
 ];
-const stats = [
-  {
-    icon: <FaUsers className="text-primary text-4xl" />,
-    value: 50000,
-    label: "Happy Readers",
-  },
-  {
-    icon: <FaBook className="text-primary text-4xl" />,
-    value: 12000,
-    label: "Books Available",
-  },
-  {
-    icon: <FaGlobeAmericas className="text-primary text-4xl" />,
-    value: 25,
-    label: "Countries Served",
-  },
-  {
-    icon: <FaSmile className="text-primary text-4xl" />,
-    value: 15,
-    label: "Years of Service",
-  },
-];
 
 const AboutUsHero = () => {
-  useEffect(() => {
-    AOS.init({ duration: 1000, once: false });
-  }, []);
+
 
   return (
     <div>
@@ -162,36 +139,7 @@ const AboutUsHero = () => {
           </div>
         </div>
       </section>
-      <section className="bg-base-200 py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                data-aos="fade-up"
-                data-aos-delay={index * 150}
-                className="transition-all duration-300"
-              >
-                <div className="flex justify-center mb-4">
-                  <div className="p-8 border-2 border-dashed border-primary rounded-lg flex items-center justify-center bg-base-200">
-                    {stat.icon}
-                  </div>
-                </div>
-                <h3 className="text-4xl font-bold text-primary">
-                  <CountUp
-                    end={stat.value}
-                    duration={2.5}
-                    separator=","
-                    enableScrollSpy={true}
-                    scrollSpyOnce={false}
-                  />
-                </h3>
-                <p className="text-gray-600">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Stats />
       <Testimonials />
     </div>
   );

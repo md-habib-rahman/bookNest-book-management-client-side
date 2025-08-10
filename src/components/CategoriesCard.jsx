@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router";
 
-const CategoriesCard = ({ category }) => {
+const CategoriesCard = ({ category, index }) => {
   return (
-    <div className="bg-base-300 p-8 rounded-2xl flex flex-col items-center justify-center gap-4 hover:shadow-2xl hover:transition-all duration-500 group hover:translate-y-[-10px]">
+    <div
+      className="bg-base-300 p-8 rounded-2xl flex flex-col items-center justify-center gap-4 hover:shadow-2xl hover:transition-all duration-500 group hover:translate-y-[-10px]"
+      data-aos="fade-up"
+      data-aos-delay={index * 100}
+    >
       <img
         src={category.icon}
         alt=""

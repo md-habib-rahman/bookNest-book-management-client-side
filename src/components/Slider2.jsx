@@ -8,9 +8,9 @@ import ButtonsSecondary from "./ButtonsSecondary";
 const Slider2 = () => {
   return (
     <section className="h-auto bg-base-300 text-white py-16 ">
-      <div className="w-10/12 mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
+      <div className="w-10/12 lg:w-8/12 mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
         <div className="max-w-xl text-left">
-          <h2 className="text-4xl font-fredoka md:text-6xl font-bold mb-4 text-primary">
+          <h2 className="text-4xl font-fredoka lg:text-6xl font-bold mb-4 text-primary">
             Manage Libraries With Ease
           </h2>
           <p className="text-lg md:text-xl mb-6">

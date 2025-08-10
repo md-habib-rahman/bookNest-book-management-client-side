@@ -22,18 +22,23 @@ const bookCategories = [
 
 const Categories = () => {
   return (
-    <section className="bg-white py-16">
-      <div className="text-center mb-12">
-        <h2 className="font-bold text-3xl">Browse Book Categories</h2>
-        <p className="text-gray-500">
+    <section className="bg-base-100 py-16">
+      <div className="text-center mb-12 ">
+        <h2
+          className="font-bold text-3xl lg:text-5xl text-primary"
+          data-aos="fade-up"
+        >
+          Browse Book Categories
+        </h2>
+        <p className="text-gray-500" data-aos="fade-up" data-aos-delay={100}>
           Discover a curated selection of genres to help you find the right book
           for every interest.
         </p>
       </div>
 
-      <div className="w-10/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="w-10/12 lg:w-8/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {bookCategories.map((category, index) => (
-          <CategoriesCard category={category} key={index} />
+          <CategoriesCard category={category} key={index} index={index} />
         ))}
       </div>
     </section>

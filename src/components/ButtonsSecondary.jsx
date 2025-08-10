@@ -7,7 +7,11 @@ const ButtonsSecondary = ({ text, dest, addClass, icon: Icon }) => (
   >
     <span className="absolute w-100 h-0 rotate-45 -translate-x-40 bg-white top-1/2 transition-all duration-300 group-hover:h-96 group-hover:-translate-y-32 ease-in-out z-0"></span>
     <span className="relative z-10 transition duration-300 group-hover:text-primary flex gap-2 items-center">
-      <span className={`${Icon && "hidden"} sm:inline whitespace-nowrap`}>
+      <span
+        className={`${
+          Icon && "hidden"
+        } sm:inline whitespace-nowrap text-center`}
+      >
         {text}
       </span>
       {Icon && <Icon className="text-lg shrink-0" />}
