@@ -34,11 +34,13 @@ This is a full-stack Library Management System built with **React**, **Firebase 
 
 ### Frontend
 
-- React + React Router DOM
+- React + React Router
 - Axios
 - Firebase Authentication
 - React Toastify
-- TailwindCSS / Bootstrap (your choice)
+- TailwindCSS
+- Dashboard
+- ReCharts
 
 ### Backend
 
