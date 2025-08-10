@@ -50,13 +50,13 @@ const UsersList = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map(({ id, name, email, role }) => (
+              {users.map(({ _id, name, email, role }, index) => (
                 <tr
-                  key={id}
+                  key={_id}
                   className="odd:bg-base-100 even:bg-base-300 hover:bg-base-200 transition-colors"
                 >
                   <td className="border border-base-300 px-4 py-2 text-base-content">
-                    {id}
+                    {index + 1}
                   </td>
                   <td className="border border-base-300 px-4 py-2 text-base-content">
                     {name}

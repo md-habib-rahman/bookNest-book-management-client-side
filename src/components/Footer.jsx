@@ -1,11 +1,13 @@
 import { Link } from "react-router";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa";
 import logo from "../assets/bookNestLogo.png";
+import ButtonsSecondary from "./ButtonsPrimary";
+import ButtonsPrimary from "./ButtonsPrimary";
 
 const Footer = () => {
   return (
-    <footer className="bg-base-100 pt-10">
-      <div className="w-10/12 mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 border-b border-gray-300 pb-5">
+    <footer className="bg-base-100 pt-10 px-8 border-t border-base-200">
+      <div className="md:w-10/12 lg:w-8/12 mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 border-b border-gray-300 pb-5">
         <div>
           <Link to="/" className="text-2xl font-bold flex items-center gap-2">
             <img src={logo} alt="" className="w-50" />
@@ -20,17 +22,17 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link to="/features" className="hover:underline">
-                Features
+              <Link to="/" className="hover:underline">
+                Home
               </Link>
             </li>
             <li>
-              <Link to="/pricing" className="hover:underline">
-                Pricing
+              <Link to="/dashboard" className="hover:underline">
+                Dashboard
               </Link>
             </li>
             <li>
-              <Link to="/about" className="hover:underline">
+              <Link to="/about-us" className="hover:underline">
                 About Us
               </Link>
             </li>
@@ -79,13 +81,17 @@ const Footer = () => {
             <input
               type="email"
               placeholder="Your email"
-              className="input input-sm text-black w-full max-w-xs rounded-l-md"
+			  required
+              className=" text-black w-full max-w-xs border-primary input input-sm py-4 border-r-0 rounded-none rounded-l-md focus:outline-none"
             />
             <button
-              type="submit"
-              className="btn btn-sm bg-white text-[#714ED5] hover:bg-gray-200 rounded-l-none"
+              
+              class="rounded-r  py-1 pr-5 pl-1  overflow-hidden relative group cursor-pointer border font-medium border-primary text-primary text-center"
             >
-              Subscribe
+              <span class="absolute w-64 h-0 transition-all duration-300 origin-center rotate-45 -translate-x-20 bg-primary top-1/2 group-hover:h-64 group-hover:-translate-y-32 ease"></span>
+              <span class="relative text-primary transition duration-300 group-hover:text-white ease">
+                Subscribe
+              </span>
             </button>
           </form>
         </div>

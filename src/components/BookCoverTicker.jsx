@@ -6,7 +6,7 @@ const BookCoverTicker = ({ books }) => {
   return (
     <div className="overflow-hidden whitespace-nowrap w-full bg-base-300 py-20">
       <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold">Explore the Shelf</h2>
+        <h2 className="text-4xl font-bold text-primary">Explore the Shelf</h2>
         <p className="text-gray-500">A scrolling showcase of our latest and most-loved reads.</p>
       </div>
 

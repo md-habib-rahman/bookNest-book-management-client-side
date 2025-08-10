@@ -12,6 +12,7 @@ import logo from "../assets/bookNestLogoInverse.png";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import Loader from "../components/Loader";
 import { FaBook } from "react-icons/fa";
+import ErrorPage from "../pages/ErrorPage";
 
 const Dashboard = () => {
   const { dbUserInfo, loading } = use(AuthContext);
@@ -39,7 +40,7 @@ const Dashboard = () => {
 
   if (loading) return <Loader />;
 
-  if (dbUserInfo?.role !== "admin") return <p>You are not allowed</p>;
+  if (dbUserInfo?.role !== "admin") return <ErrorPage />;
 
   return (
     <div className="flex min-h-screen bg-base-100 text-base-content font-sans">
@@ -115,12 +116,12 @@ const Dashboard = () => {
         {/* Top Navbar (hidden on mobile, visible on md+) */}
         <header className="hidden md:flex justify-between items-center mb-8">
           <h1 className="text-3xl font-extrabold text-primary">Dashboard</h1>
-          <button
+          {/* <button
             type="button"
             className="bg-secondary text-white px-4 py-2 rounded-lg shadow hover:bg-secondary/90 transition"
           >
             New Report
-          </button>
+          </button> */}
         </header>
 
         {/* Nested Routes Render Here */}

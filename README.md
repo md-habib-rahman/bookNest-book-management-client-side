@@ -51,9 +51,14 @@ This is a full-stack Library Management System built with **React**, **Firebase 
 ---
 
 ## Live Site Link: https://book-nest-auth.web.app/
-git clone https://github.com/Programming-Hero-Web-Course4/b11a11-client-side-md-habib-rahman
-cd project-dir
 
-npm install
+---
+
+# Admin Credential
+
+User: admin@booknest.com
+Password: JKLmnb098@
+
+```
 
 ```

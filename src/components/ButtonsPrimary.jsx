@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 
-const ButtonsSecondary = ({ text, dest, addClass = "", icon: Icon }) => (
+const ButtonsPrimary = ({ text, dest, addClass = "", icon: Icon }) => (
   <Link
     to={dest}
     className={`relative group inline-block px-6 py-2 m-1 border-2 font-medium border-primary text-primary bg-transparent text-center rounded-xl overflow-hidden ${addClass}`}
@@ -22,4 +22,4 @@ const ButtonsSecondary = ({ text, dest, addClass = "", icon: Icon }) => (
   </Link>
 );
 
-export default ButtonsSecondary;
+export default ButtonsPrimary;
