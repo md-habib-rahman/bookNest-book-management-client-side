@@ -110,14 +110,14 @@ const Navbar = () => {
         <>
           <li>
             <NavLink
-              to="/add-books"
+              to="/dashboard"
               className={({ isActive }) =>
                 isActive
                   ? "border-b-2 pb-1 border-primary text-primary font-semibold transition-all duration-200 ease-in-out"
                   : "hover:text-primary  transition-all duration-200 ease-in-out"
               }
             >
-              Add Books
+             Dashboard
             </NavLink>
           </li>
         </>
@@ -139,6 +139,18 @@ const Navbar = () => {
           </li>
         </>
       )}
+      <li>
+        <NavLink
+          to="/contact-us"
+          className={({ isActive }) =>
+            isActive
+              ? "border-b-2 pb-1 border-primary text-primary font-semibold transition-all duration-200 ease-in-out"
+              : "hover:text-primary  transition-all duration-200 ease-in-out"
+          }
+        >
+          Contact Us
+        </NavLink>
+      </li>
     </>
   );
 

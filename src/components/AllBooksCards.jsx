@@ -5,11 +5,15 @@ import { FiEdit } from "react-icons/fi";
 import { Link } from "react-router";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
-const AllBooksCards = ({ book }) => {
+const AllBooksCards = ({ book, index }) => {
   const { dbUserInfo } = use(AuthContext);
   console.log(book);
   return (
-    <div className="flex bg-base-200 gap-4 rounded-xl shadow-lg px-2 mb-6 pb-4 relative">
+    <div
+      className="flex bg-base-200 gap-4 rounded-xl shadow-lg px-2 mb-6 pb-4 relative"
+      data-aos="zoom-in"
+      data-aos-delay={index * 100}
+    >
       <div className="-mt-6 w-70 h-40 rounded-lg overflow-hidden">
         <img
           src={book.image}

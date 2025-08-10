@@ -34,7 +34,7 @@ const AddBook = () => {
      {/* <Helmet> 
         <title>Add Book | BookNest</title>
       </Helmet> */}
-      <div className=" w-full md:w-10/12 p-6 bg-white rounded-xl shadow-md">
+      <div className=" w-full md:w-10/12 lg:w-8/12 p-6 bg-white rounded-xl shadow-md">
         <h2 className="text-2xl font-bold text-center text-primary mb-6">
           Add a New Book
         </h2>

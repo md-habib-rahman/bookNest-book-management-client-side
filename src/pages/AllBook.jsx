@@ -45,10 +45,10 @@ const AllBook = () => {
       </Helmet> */}
       <section className="bg-base-100 py-12">
         <div className="w-full md:w-10/12 lg:w-8/12 mx-auto text-center space-y-2 mb-8">
-          <h2 className="font-bold text-4xl text-primary">
+          <h2 className="font-bold text-4xl text-primary" data-aos="fade-up">
             Explore Our Complete Book Collection
           </h2>
-          <p className="text-gray-500">
+          <p className="text-gray-500" data-aos="fade-up" data-aos-delay={100}>
             Browse through a diverse library of genres, authors, and timeless
             stories—all in one place.
           </p>
@@ -69,8 +69,12 @@ const AllBook = () => {
           className={`w-full md:w-10/12 lg:w-8/12 mx-auto py-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8`}
         >
           {
-            books.map((book) => (
-              <AllBooksCards book={book} key={book._id}></AllBooksCards>
+            books.map((book, index) => (
+              <AllBooksCards
+                book={book}
+                key={book._id}
+                index={index}
+              ></AllBooksCards>
             ))
             /* {viewState === "card" ? (
             books.map((book) => (

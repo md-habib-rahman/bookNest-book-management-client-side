@@ -13,6 +13,8 @@ import AllBook from "../pages/AllBook";
 import BorrowedBooks from "../pages/BorrowedBooks";
 import UpdateBook from "../pages/UpdateBook";
 import AboutUs from "../pages/AboutUs";
+import Contact from "../pages/Contact";
+import Dashboard from "../layouts/DashboardLayout";
 
 const serverUrl = "https://booknest-lime.vercel.app";
 
@@ -69,6 +71,11 @@ const router = createBrowserRouter([
         // loader: () => fetch(`${serverUrl}/books`),
       },
       {
+        path: "/contact-us",
+        Component: Contact,
+        // loader: () => fetch(`${serverUrl}/books`),
+      },
+      {
         path: "/add-books",
         element: (
           <PrivateRoute>
@@ -82,6 +89,14 @@ const router = createBrowserRouter([
         loader: ({ params }) => fetch(`${serverUrl}/books/${params.category}`),
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/*",
